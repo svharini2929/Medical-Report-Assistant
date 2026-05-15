@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>AI Medical Assistant</title>
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="nav-icon">🩺</span>
+            <span class="nav-title">MedReport AI</span>
+        </div>
+        <div class="nav-status" id="dbStatus">
+            <span class="status-dot"></span>
+            <span class="status-text">Checking system...</span>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Understand Your <span class="highlight">Medical Report</span></h1>
+            <p class="hero-sub">Upload a blood test or prescription image and get a simple, AI-powered explanation in seconds.</p>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+
+        <!-- UPLOAD CARD -->
+        <div class="card upload-card">
+            <div class="card-header">
+                <span class="card-icon">📁</span>
+                <h2>Upload Your Report</h2>
+            </div>
+
+            <div class="upload-zone" id="uploadZone">
+                <div class="upload-icon">⬆️</div>
+                <p class="upload-text">Drag & drop your report here</p>
+                <p class="upload-sub">or</p>
+                <label class="btn btn-outline" for="fileInput">Browse File</label>
+                <input type="file" id="fileInput" accept="image/*" hidden />
+                <p class="upload-hint">Supports JPG, PNG, JPEG</p>
+            </div>
+
+            <!-- Preview -->
+            <div class="preview-area" id="previewArea" style="display:none;">
+                <img id="previewImg" src="" alt="Report Preview" />
+                <div class="preview-info">
+                    <p id="fileName" class="file-name"></p>
+                    <button class="btn-remove" id="removeFile">✕ Remove</button>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" id="analyzeBtn" disabled>
+                <span class="btn-icon">🚀</span> Analyze Report
+            </button>
+        </div>
+
+        <!-- LOADER -->
+        <div class="loader-card" id="loaderCard" style="display:none;">
+            <div class="steps">
+                <div class="step" id="step1">
+                    <div class="step-spinner"></div>
+                    <span>Reading report with Gemini Vision...</span>
+                </div>
+                <div class="step step-pending" id="step2">
+                    <div class="step-icon">📚</div>
+                    <span>Retrieving medical facts from Knowledge Base...</span>
+                </div>
+                <div class="step step-pending" id="step3">
+                    <div class="step-icon">✍️</div>
+                    <span>Generating simple explanation...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULT CARD -->
+        <div class="card result-card" id="resultCard" style="display:none;">
+            <div class="card-header">
+                <span class="card-icon">📋</span>
+                <h2>Analysis Summary</h2>
+            </div>
+            <div class="result-body" id="resultBody"></div>
+            <div class="disclaimer-box" id="disclaimerBox"></div>
+            <button class="btn btn-success" id="downloadBtn">
+                📥 Download Explanation
+            </button>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>Developed by <strong>Harini S V</strong> | First Year CSE | Chennai Institute of Technology</p>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
